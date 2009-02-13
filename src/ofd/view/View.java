@@ -28,6 +28,7 @@ public class View {
 
     @Override
     public Tile getTile(VDirection dir) {
+      // TODO share logic with POV
       int index = (dir.ordinal() + offset) % 4;
       MDirection mdir = MDirection.values()[index];
       return ms.getTile(mdir);

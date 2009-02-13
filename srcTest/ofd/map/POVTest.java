@@ -1,8 +1,9 @@
 package ofd.map;
 
-import static org.junit.Assert.assertSame;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+
+import ofd.view.Rotation;
+import ofd.view.VDirection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,7 @@ public class POVTest {
   // ////////////////////////////////////////////////////////////
   // Fields
 
-  private Grid grid;
+  private MockGrid grid;
   private MSquare[][] gsq;
 
   // ////////////////////////////////////////////////////////////
@@ -20,34 +21,10 @@ public class POVTest {
 
   @Before
   public void setUp() {
-    gsq = new MSquare[][] {
-        { mock(MSquare.class), mock(MSquare.class), mock(MSquare.class) },
-        { mock(MSquare.class), mock(MSquare.class), mock(MSquare.class) },
-        { mock(MSquare.class), mock(MSquare.class), mock(MSquare.class) } };
-    for (int x = 0; x < 3; x++) {
-      for (int y = 0; y < 3; y++) {
-        MSquare square = gsq[x][y];
-        when(square.toString()).thenReturn("[" + x + ", " + y + "]");
-      }
-    }
-    grid = new Grid() {
-
-      @Override
-      public MSquare getSquare(Coord coord) {
-        return gsq[coord.x()][coord.y()];
-      }
-
-      @Override
-      public int height() {
-        return 3;
-      }
-
-      @Override
-      public int width() {
-        return 3;
-      }
-
-    };
+    int gridW = 3;
+    int gridH = 3;
+    grid = new MockGrid(gridW, gridH);
+    gsq = grid.getGsq();
   }
 
   // ////////////////////////////////////////////////////////////
@@ -191,5 +168,161 @@ public class POVTest {
     assertSame(gsq[2][2], pov.getSquare(grid, 1, -1));
     assertSame(gsq[2][1], pov.getSquare(grid, 0, -1));
     assertSame(gsq[2][0], pov.getSquare(grid, -1, -1));
+  }
+  
+  @Test
+  public void testMoveNorth() {
+    MDirection fwd = MDirection.NORTH;
+    POV pov = new POV(new Coord(0, 0), fwd);
+    
+    POV moved = pov.move(VDirection.FWD);
+    assertNotSame(moved, pov);
+    assertSame(fwd, moved.getFwd());
+    assertEquals(new Coord(0, 1), moved.getCoord());
+
+    POV moved2 = moved.move(VDirection.RIGHT);
+    assertNotSame(moved2, moved);
+    assertSame(fwd, moved2.getFwd());
+    assertEquals(new Coord(1, 1), moved2.getCoord());
+
+    POV moved3 = moved2.move(VDirection.BACK);
+    assertNotSame(moved3, moved2);
+    assertSame(fwd, moved3.getFwd());
+    assertEquals(new Coord(1, 0), moved3.getCoord());
+
+    POV moved4 = moved3.move(VDirection.LEFT);
+    assertNotSame(moved4, moved3);
+    assertSame(fwd, moved4.getFwd());
+    assertEquals(new Coord(0, 0), moved4.getCoord());
+  }
+
+  @Test
+  public void testMoveSouth() {
+    MDirection fwd = MDirection.SOUTH;
+    POV pov = new POV(new Coord(0, 0), fwd);
+    
+    POV moved = pov.move(VDirection.FWD);
+    assertNotSame(moved, pov);
+    assertSame(fwd, moved.getFwd());
+    assertEquals(new Coord(0, -1), moved.getCoord());
+
+    POV moved2 = moved.move(VDirection.RIGHT);
+    assertNotSame(moved2, moved);
+    assertSame(fwd, moved2.getFwd());
+    assertEquals(new Coord(-1, -1), moved2.getCoord());
+
+    POV moved3 = moved2.move(VDirection.BACK);
+    assertNotSame(moved3, moved2);
+    assertSame(fwd, moved3.getFwd());
+    assertEquals(new Coord(-1, 0), moved3.getCoord());
+
+    POV moved4 = moved3.move(VDirection.LEFT);
+    assertNotSame(moved4, moved3);
+    assertSame(fwd, moved4.getFwd());
+    assertEquals(new Coord(0, 0), moved4.getCoord());
+  }
+
+  @Test
+  public void testMoveEast() {
+    MDirection fwd = MDirection.EAST;
+    POV pov = new POV(new Coord(0, 0), fwd);
+    
+    POV moved = pov.move(VDirection.FWD);
+    assertNotSame(moved, pov);
+    assertSame(fwd, moved.getFwd());
+    assertEquals(new Coord(1, 0), moved.getCoord());
+
+    POV moved2 = moved.move(VDirection.RIGHT);
+    assertNotSame(moved2, moved);
+    assertSame(fwd, moved2.getFwd());
+    assertEquals(new Coord(1, -1), moved2.getCoord());
+
+    POV moved3 = moved2.move(VDirection.BACK);
+    assertNotSame(moved3, moved2);
+    assertSame(fwd, moved3.getFwd());
+    assertEquals(new Coord(0, -1), moved3.getCoord());
+
+    POV moved4 = moved3.move(VDirection.LEFT);
+    assertNotSame(moved4, moved3);
+    assertSame(fwd, moved4.getFwd());
+    assertEquals(new Coord(0, 0), moved4.getCoord());
+  }
+
+  @Test
+  public void testMoveWest() {
+    MDirection fwd = MDirection.WEST;
+    POV pov = new POV(new Coord(0, 0), fwd);
+    
+    POV moved = pov.move(VDirection.FWD);
+    assertNotSame(moved, pov);
+    assertSame(fwd, moved.getFwd());
+    assertEquals(new Coord(-1, 0), moved.getCoord());
+
+    POV moved2 = moved.move(VDirection.RIGHT);
+    assertNotSame(moved2, moved);
+    assertSame(fwd, moved2.getFwd());
+    assertEquals(new Coord(-1, 1), moved2.getCoord());
+
+    POV moved3 = moved2.move(VDirection.BACK);
+    assertNotSame(moved3, moved2);
+    assertSame(fwd, moved3.getFwd());
+    assertEquals(new Coord(0, 1), moved3.getCoord());
+
+    POV moved4 = moved3.move(VDirection.LEFT);
+    assertNotSame(moved4, moved3);
+    assertSame(fwd, moved4.getFwd());
+    assertEquals(new Coord(0, 0), moved4.getCoord());
+  }
+
+  @Test
+  public void testTurnCW() {
+    Coord c = new Coord(1, 1);
+    POV pov = new POV(c, MDirection.NORTH);
+
+    POV turn = pov.turn(Rotation.CLOCKWISE);
+    assertNotSame(turn, pov);
+    assertEquals(c, turn.getCoord());
+    assertEquals(MDirection.EAST, turn.getFwd());
+
+    POV turn2 = turn.turn(Rotation.CLOCKWISE);
+    assertNotSame(turn2, pov);
+    assertEquals(c, turn2.getCoord());
+    assertEquals(MDirection.SOUTH, turn2.getFwd());
+
+    POV turn3 = turn2.turn(Rotation.CLOCKWISE);
+    assertNotSame(turn3, pov);
+    assertEquals(c, turn3.getCoord());
+    assertEquals(MDirection.WEST, turn3.getFwd());
+
+    POV turn4 = turn3.turn(Rotation.CLOCKWISE);
+    assertNotSame(turn4, pov);
+    assertEquals(c, turn4.getCoord());
+    assertEquals(MDirection.NORTH, turn4.getFwd());
+  }
+  
+  @Test
+  public void testTurnCCW() {
+    Coord c = new Coord(1, 1);
+    POV pov = new POV(c, MDirection.NORTH);
+
+    POV turn = pov.turn(Rotation.COUNTERCLOCKWISE);
+    assertNotSame(turn, pov);
+    assertEquals(c, turn.getCoord());
+    assertEquals(MDirection.WEST, turn.getFwd());
+
+    POV turn2 = turn.turn(Rotation.COUNTERCLOCKWISE);
+    assertNotSame(turn2, pov);
+    assertEquals(c, turn2.getCoord());
+    assertEquals(MDirection.SOUTH, turn2.getFwd());
+
+    POV turn3 = turn2.turn(Rotation.COUNTERCLOCKWISE);
+    assertNotSame(turn3, pov);
+    assertEquals(c, turn3.getCoord());
+    assertEquals(MDirection.EAST, turn3.getFwd());
+
+    POV turn4 = turn3.turn(Rotation.COUNTERCLOCKWISE);
+    assertNotSame(turn4, pov);
+    assertEquals(c, turn4.getCoord());
+    assertEquals(MDirection.NORTH, turn4.getFwd());
   }
 }
