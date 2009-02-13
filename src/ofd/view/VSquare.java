@@ -1,7 +1,7 @@
 package ofd.view;
 
-import ofd.map.*;
+import ofd.map.Tile;
 
 public interface VSquare {
-	Tile getTile(VDirection dir);
+  Tile getTile(VDirection dir);
 }

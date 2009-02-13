@@ -1,5 +1,5 @@
 package ofd.view;
 
 public enum VDirection {
-	FWD, RIGHT, BACK, LEFT
+  FWD, RIGHT, BACK, LEFT
 }
