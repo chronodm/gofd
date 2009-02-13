@@ -19,6 +19,7 @@ public class TransformTest {
 	private Tile w;
 	private MSquare mSq;
 	private Grid grid;
+	private MSquare[][] gsq;
 
 	// ////////////////////////////////////////////////////////////
 	// Fixture
@@ -43,20 +44,21 @@ public class TransformTest {
 		when(mSq.getTile(MDirection.EAST)).thenReturn(e);
 		when(mSq.getTile(MDirection.WEST)).thenReturn(w);
 		
-		MSquare[][] gridSquares = {
+		gsq = new MSquare[][] {
 				{mock(MSquare.class), mock(MSquare.class), mock(MSquare.class)},
 				{mock(MSquare.class), mock(MSquare.class), mock(MSquare.class)},
 				{mock(MSquare.class), mock(MSquare.class), mock(MSquare.class)}
 			};
-		
 		grid = mock(Grid.class);
 		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
-				MSquare square = gridSquares[x][y];
+				MSquare square = gsq[x][y];
 				when(square.toString()).thenReturn("[" + x + ", " + y + "]");
 				when(grid.getSquare(new Coord(x, y))).thenReturn(square);
 			}
 		}
+		when(grid.width()).thenReturn(3);
+		when(grid.height()).thenReturn(3);
 	}
 	
 	// ////////////////////////////////////////////////////////////
@@ -99,7 +101,128 @@ public class TransformTest {
 	}
 
 	@Test
-	public void testMovement() {
-		fail("test not implemented");
+	public void testLocation() {
+		POV pov = new POV(new Coord(0, 0), MDirection.NORTH);
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, 2, 1));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, 2, 0));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, 2, 2));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 0, 1));
+		assertSame(gsq[0][0], Transform.getSquare(grid, pov, 0, 0));
+		assertSame(gsq[0][2], Transform.getSquare(grid, pov, 0, 2));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 1, 1));
+		assertSame(gsq[1][0], Transform.getSquare(grid, pov, 1, 0));
+		assertSame(gsq[1][2], Transform.getSquare(grid, pov, 1, 2));
 	}
+	
+	@Test
+	public void testLocationWrap() {
+		POV pov = new POV(new Coord(0, 0), MDirection.NORTH);
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, -1, 1));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, -1, -1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 1, 1));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, 1, -1));
+	}
+
+	@Test
+	public void testLocationRotateEast() {
+		POV pov = new POV(new Coord(0, 0), MDirection.EAST);
+		assertSame(gsq[2][1], Transform.getSquare(grid, pov, -1, -1));
+		assertSame(gsq[2][0], Transform.getSquare(grid, pov, 0, -1));
+		assertSame(gsq[2][2], Transform.getSquare(grid, pov, 1, -1));
+		assertSame(gsq[0][1], Transform.getSquare(grid, pov, -1, 0));
+		assertSame(gsq[0][0], Transform.getSquare(grid, pov, 0, 0));
+		assertSame(gsq[0][2], Transform.getSquare(grid, pov, 1, 0));
+		assertSame(gsq[1][1], Transform.getSquare(grid, pov, -1, 1));
+		assertSame(gsq[1][0], Transform.getSquare(grid, pov, 0, 1));
+		assertSame(gsq[1][2], Transform.getSquare(grid, pov, 1, 1));
+	}
+
+  @Test
+  public void testLocationRotateSouth() {
+    POV pov = new POV(new Coord(0, 0), MDirection.SOUTH);
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, 1, -1));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, 1, 1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, -1, -1));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, -1, 1));
+  }
+
+  @Test
+  public void testLocationRotateWest() {
+    POV pov = new POV(new Coord(0, 0), MDirection.WEST);
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, 1, 1));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, -1, 1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 1, -1));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, -1, -1));
+  }
+  
+  @Test
+  public void testLocationTranslate() {
+    POV pov = new POV(new Coord(1, 1), MDirection.NORTH);
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, -1, 1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, -1, -1));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, 1, 1));
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, 1, -1));
+  }
+  
+  @Test
+  public void testLocationTranslateEast() {
+    POV pov = new POV(new Coord(1, 1), MDirection.EAST);
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, -1, -1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, 1, -1));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, -1, 1));
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, 1, 1));
+  }
+
+  @Test
+  public void testLocationTranslateSouth() {
+    POV pov = new POV(new Coord(1, 1), MDirection.SOUTH);
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, 1, -1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, 1, 1));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, -1, -1));
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, -1, 1));
+  }
+
+  @Test
+  public void testLocationTranslateWest() {
+    POV pov = new POV(new Coord(1, 1), MDirection.WEST);
+    assertSame(gsq[0][2], Transform.getSquare(grid, pov, 1, 1));
+    assertSame(gsq[0][1], Transform.getSquare(grid, pov, 0, 1));
+    assertSame(gsq[0][0], Transform.getSquare(grid, pov, -1, 1));
+    assertSame(gsq[1][2], Transform.getSquare(grid, pov, 1, 0));
+    assertSame(gsq[1][1], Transform.getSquare(grid, pov, 0, 0));
+    assertSame(gsq[1][0], Transform.getSquare(grid, pov, -1, 0));
+    assertSame(gsq[2][2], Transform.getSquare(grid, pov, 1, -1));
+    assertSame(gsq[2][1], Transform.getSquare(grid, pov, 0, -1));
+    assertSame(gsq[2][0], Transform.getSquare(grid, pov, -1, -1));
+  }
 }

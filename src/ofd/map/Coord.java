@@ -9,14 +9,14 @@ public class Coord {
 		this.y = y;
 	}
 
-	public int getX() {
+	public int x() {
 		return x;
 	}
 
-	public int getY() {
+	public int y() {
 		return y;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
