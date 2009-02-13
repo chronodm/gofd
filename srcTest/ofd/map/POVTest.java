@@ -82,6 +82,20 @@ public class POVTest {
   }
 
   @Test
+  public void testGetSquareWrapWacky() {
+    POV pov = new POV(new Coord(-3, -3), MDirection.NORTH);
+    assertSame(gsq[2][1], pov.getSquare(grid, -1, 1));
+    assertSame(gsq[2][0], pov.getSquare(grid, -1, 0));
+    assertSame(gsq[2][2], pov.getSquare(grid, -1, -1));
+    assertSame(gsq[0][1], pov.getSquare(grid, 0, 1));
+    assertSame(gsq[0][0], pov.getSquare(grid, 0, 0));
+    assertSame(gsq[0][2], pov.getSquare(grid, 0, -1));
+    assertSame(gsq[1][1], pov.getSquare(grid, 1, 1));
+    assertSame(gsq[1][0], pov.getSquare(grid, 1, 0));
+    assertSame(gsq[1][2], pov.getSquare(grid, 1, -1));
+  }
+
+  @Test
   public void testGetSquareRotateEast() {
     POV pov = new POV(new Coord(0, 0), MDirection.EAST);
     assertSame(gsq[2][1], pov.getSquare(grid, -1, -1));

@@ -21,14 +21,16 @@ public abstract class Grid {
     int w = width();
     if (x < 0) {
       x = (x % w) + w;
-    } else if (x > w) {
+    }
+    if (x >= w) {
       x = x % w;
     }
 
     int h = height();
     if (y < 0) {
       y = (y % h) + h;
-    } else if (y > h) {
+    }
+    if (y >= h) {
       y = y % h;
     }
 
