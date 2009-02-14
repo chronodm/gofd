@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.font.LineMetrics;
+import java.awt.geom.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -21,11 +22,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ofd.map.Coord;
-import ofd.map.Grid;
-import ofd.map.MDirection;
-import ofd.map.MockGrid;
-import ofd.map.POV;
+import ofd.map.*;
 import ofd.util.Disposable;
 import ofd.view.Rotation;
 import ofd.view.VDirection;
@@ -92,6 +89,17 @@ public class Display extends JPanel implements Disposable {
     g2.drawString(dir, hCen - (dirW / 2f), vCen + line / 2f);
     
     System.out.println(pov);
+    
+    Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
+    
+    int tileX = 12;
+    int tileY = 15;
+    
+    int dx = tileX - coord.x();
+    int dy = tileY - coord.y();
+    
+    TileRenderer renderer = new TileRenderer(TileType.WALL, VDirection.RIGHT);
+    renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
   }
   
   @Override
@@ -138,9 +146,9 @@ public class Display extends JPanel implements Disposable {
           System.out.print(e.getKeyChar() + "\t");
           System.out.println(KeyEvent.getKeyText(keyCode));
           POV pov = model.getPov();
-          if (keyCode == KeyEvent.VK_W) {
+          if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
             model.setPOV(pov.move(VDirection.FWD));
-          } else if (keyCode == KeyEvent.VK_S) {
+          } else if (keyCode == KeyEvent.VK_S|| keyCode == KeyEvent.VK_DOWN) {
             model.setPOV(pov.move(VDirection.BACK));
           } else if (keyCode == KeyEvent.VK_A) {
             model.setPOV(pov.move(VDirection.LEFT));
