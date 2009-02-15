@@ -1,5 +1,7 @@
 package ofd.map;
 
+import java.util.*;
+
 public abstract class Grid {
 
   // ////////////////////////////////////////////////////////////
@@ -14,6 +16,19 @@ public abstract class Grid {
   // ////////////////////////////////////////////////////////////
   // Utility methods
 
+  public Coord getCoord(MSquare square) {
+    for (int x = 0; x < width(); x++) {
+      for (int y = 0; y < height(); y++) {
+        Coord c = new Coord(x, y);
+        MSquare sq = getSquare(c);
+        if (sq.equals(square)) {
+          return c;
+        }
+      }
+    }
+    throw new IllegalArgumentException();
+  }
+  
   /**
    * Handles toroidal wrapping
    */

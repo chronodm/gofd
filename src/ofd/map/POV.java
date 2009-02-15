@@ -1,5 +1,7 @@
 package ofd.map;
 
+import java.util.*;
+
 import ofd.view.VDirection;
 import ofd.view.Rotation;
 
@@ -37,6 +39,25 @@ public class POV {
   public MDirection getFwd() {
     return fwd;
   }
+
+  public Iterable<MSquare> getView(Grid grid, int maxY, int maxX) {
+    if (maxY < 1) {
+      throw new IllegalArgumentException();
+    }
+    if (maxX < 1) {
+      throw new IllegalArgumentException();
+    }
+    
+    List<MSquare> squares = new ArrayList<MSquare>();
+    for (int yOff = maxY; yOff >= 1; yOff--) {
+      for (int xOff = -maxX; xOff < maxX; xOff++) {
+        // TODO: Narrow as we get closer
+        squares.add(getSquare(grid, xOff, yOff));
+      }
+    }
+    return Collections.unmodifiableList(squares);
+  }
+
 
   // ////////////////////////////////////////////////////////////
   // Transformations

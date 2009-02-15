@@ -65,6 +65,8 @@ public class TileRenderer {
       return;
     }
 
+    Graphics2D g2 = (Graphics2D) g.create();
+    
     double fovWidthPx = viewRect.getWidth();
 
     // Standing in middle of square
@@ -96,10 +98,12 @@ public class TileRenderer {
       System.out.println(x0 + ", " + z0 + ", " + width + ", " + height);
       
       Rectangle2D rect = new Rectangle2D.Double(x0, z0, width, height);
-      g.draw(rect);
-    }
-    
-    if (side == VDirection.RIGHT || side == VDirection.LEFT) {
+      g2.draw(rect);
+      
+      rect = new Rectangle2D.Double(x0 + 1, z0 + 1, width - 2, height - 2);
+      g2.setColor(g2.getBackground());
+      g2.fill(rect);
+    } else if (side == VDirection.RIGHT || side == VDirection.LEFT) {
       //// Left
       // x2y2px, z2y2px
       // x2y2px, z1y2px
@@ -115,12 +119,22 @@ public class TileRenderer {
       path.lineTo(cenX + x2y2px, cenY + z1y2px);
       path.lineTo(cenX + x2y2px, cenY + z2y2px);
       
-      System.out.println((cenX + x2y2px) + ", " + (cenY + z2y2px));
-      System.out.println((cenX + x2y1px) + ", " + (cenY + z2y1px));
-      System.out.println((cenX + x2y1px) + ", " + (cenY + z1y1px));
-      System.out.println((cenX + x2y2px) + ", " + (cenY + z1y2px));
+//      System.out.println((cenX + x2y2px) + ", " + (cenY + z2y2px));
+//      System.out.println((cenX + x2y1px) + ", " + (cenY + z2y1px));
+//      System.out.println((cenX + x2y1px) + ", " + (cenY + z1y1px));
+//      System.out.println((cenX + x2y2px) + ", " + (cenY + z1y2px));
       
-      g.draw(path);
+      g2.draw(path);
+
+      
+      path = new GeneralPath();
+      path.moveTo(cenX + x2y2px + 1, cenY + z2y2px + 1);
+      path.lineTo(cenX + x2y1px - 1, cenY + z2y1px + 1);
+      path.lineTo(cenX + x2y1px - 1, cenY + z1y1px - 1);
+      path.lineTo(cenX + x2y2px + 1, cenY + z1y2px - 1);
+      path.lineTo(cenX + x2y2px + 1, cenY + z2y2px + 1);
+      g2.setColor(g2.getBackground());
+      g2.fill(path);
     }
     
   }

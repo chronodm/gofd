@@ -24,8 +24,7 @@ import javax.swing.event.ChangeListener;
 
 import ofd.map.*;
 import ofd.util.Disposable;
-import ofd.view.Rotation;
-import ofd.view.VDirection;
+import ofd.view.*;
 
 public class Display extends JPanel implements Disposable {
 
@@ -66,6 +65,7 @@ public class Display extends JPanel implements Disposable {
     
     Graphics2D g2 = (Graphics2D) g.create();
     g2.setColor(FOREGROUND);
+//    g2.setBackground(BACKGROUND);
     g2.setFont(FONT);
 
     FontMetrics fm = g2.getFontMetrics();
@@ -92,14 +92,26 @@ public class Display extends JPanel implements Disposable {
     
     Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
     
-    int tileX = 12;
-    int tileY = 15;
+//    TileRenderer renderer = new TileRenderer(TileType.WALL, VDirection.FWD);
+//    renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
     
-    int dx = tileX - coord.x();
-    int dy = tileY - coord.y();
-    
-    TileRenderer renderer = new TileRenderer(TileType.WALL, VDirection.FWD);
-    renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
+    Grid grid = model.getGrid();
+    for (MSquare mSq: pov.getView(grid, 5, 5)) {
+      VSquare vSq = View.see(mSq, pov.getFwd());
+      for (VDirection vDir: VDirection.values()) {
+        TileType tileType = vSq.getTile(vDir).type();
+        TileRenderer renderer = new TileRenderer(tileType, vDir);
+        Coord c = grid.getCoord(mSq);
+        
+        // TODO: Transform for orientation
+        int dx = c.x() - coord.x();
+        int dy = c.y() - coord.y();
+        renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
+      }
+    }
+
+    g2.drawString(pos, hCen - (posW / 2f), vCen - line / 2f);
+    g2.drawString(dir, hCen - (dirW / 2f), vCen + line / 2f);
   }
   
   @Override
@@ -126,8 +138,8 @@ public class Display extends JPanel implements Disposable {
       Border etchedBorder = BorderFactory.createEtchedBorder(Color.CYAN, Color.MAGENTA);
       CompoundBorder border = BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(emptyBorder, etchedBorder), emptyBorder);
       
-      Grid grid = new MockGrid(24, 24);
-      POV pov = new POV(new Coord(grid.width() / 2, grid.height() / 2), MDirection.NORTH);
+      Grid grid = new TestGrid();
+      POV pov = new POV(new Coord(0, 0), MDirection.NORTH);
       final DisplayModel model = new DisplayModel(grid, pov);
       
       Display disp = new Display(model);

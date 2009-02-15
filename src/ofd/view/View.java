@@ -1,8 +1,8 @@
 package ofd.view;
 
-import ofd.map.MDirection;
-import ofd.map.MSquare;
-import ofd.map.Tile;
+import java.util.*;
+
+import ofd.map.*;
 
 public class View {
 
@@ -12,7 +12,7 @@ public class View {
   public static VSquare see(MSquare ms, MDirection facing) {
     return new SquareWrapper(ms, facing);
   }
-
+  
   // ////////////////////////////////////////////////////////////
   // Inner classes
 
