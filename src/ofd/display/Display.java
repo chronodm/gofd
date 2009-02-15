@@ -98,7 +98,7 @@ public class Display extends JPanel implements Disposable {
     int dx = tileX - coord.x();
     int dy = tileY - coord.y();
     
-    TileRenderer renderer = new TileRenderer(TileType.WALL, VDirection.RIGHT);
+    TileRenderer renderer = new TileRenderer(TileType.WALL, VDirection.FWD);
     renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
   }
   
