@@ -57,9 +57,26 @@ public abstract class Grid {
                              - A POV facing direction
                            Return:
                              - A rotated VGrid, with each square properly rotated
+
+                                P getRotatedPoint(P unrotated, MDirection fwd) {
+                                  int xm = unrotated.x();
+                                  int ym = unrotated.y();
+                                  switch (fwd) {
+                                    case NORTH:
+                                      return new Coord(xm, ym);
+                                    case SOUTH:
+                                      return new Coord(-xm, -ym);
+                                    case EAST:
+                                      return new Coord(ym, -xm);
+                                    case WEST:
+                                      return new Coord(-ym, xm);
+                                    default:
+                                      throw new IllegalArgumentException("Bad direction " + fwd); 
+                                  }
+                                }
+
    */
 
-  
   // ////////////////////////////////////////////////////////////
   // Abstracts
 
