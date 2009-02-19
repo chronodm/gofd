@@ -5,31 +5,31 @@ import java.util.*;
 public abstract class Grid {
 
   /*
-   TODO __REDESIGN__: 1) rename Coord to P
+   TODO __REDESIGN__: 01) rename Coord to P
 
-   TODO __REDESIGN__: 2) add: interface Range implements Iterable<Integer> {
+   TODO __REDESIGN__: 02) add: interface Range implements Iterable<Integer> {
      int from();
      int to();
      int size();
    }
 
-   TODO __REDESIGN__: 3) interface IGrid<S> { // plus AbstractGrid<S>
+   TODO __REDESIGN__: 03) interface IGrid<S> { // plus AbstractGrid<S>
      Range xRange();
      Range yRange();
      S get(P p);
    }
    
-   TODO __REDESIGN__: 4) rename Grid to MGrid (implements IGrid<MSquare>)
+   TODO __REDESIGN__: 04) rename Grid to MGrid (implements IGrid<MSquare>)
    
-   TODO __REDESIGN__: 5) add VGrid interface (extends IGrid<VSquare>)
+   TODO __REDESIGN__: 05) add VGrid interface (extends IGrid<VSquare>)
                          (note: uses relative coordinates rather than absolute;
                          size is always odd, ranges are -fov to +fov)
    
-   TODO __REDESIGN__: 7) adapt MapDisplay to show POV w/ location, direction, FOV
+   TODO __REDESIGN__: 06) adapt MapDisplay to show POV w/ location, direction, FOV
    
-   TODO __REDESIGN__: 8) generalize to VGrid (may include generalizing MSquare/VSquare)
+   TODO __REDESIGN__: 07) generalize to VGrid (may include generalizing MSquare/VSquare)
 
-   TODO __REDESIGN__: 9) add POV.see(MGrid) (returns VGrid) layering:
+   TODO __REDESIGN__: 08) add POV.see(MGrid) (returns VGrid) layering:
                          VGrid -> Rotation -> Translation/Cliption -> MGrid
                          
                          Translation/Cliption:
@@ -74,6 +74,8 @@ public abstract class Grid {
                                       throw new IllegalArgumentException("Bad direction " + fwd); 
                                   }
                                 }
+
+   TODO __REDESIGN__: 09) rewrite 1st-person display using Displayulator
 
    */
 
