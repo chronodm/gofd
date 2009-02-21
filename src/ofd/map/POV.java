@@ -1,23 +1,26 @@
 package ofd.map;
 
-import java.util.*;
-
-import ofd.view.VDirection;
+import ofd.util.P;
 import ofd.view.Rotation;
+import ofd.view.VDirection;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class POV {
 
   // ////////////////////////////////////////////////////////////
   // Final fields
 
-  private final Coord coord;
+  private final P p;
   private final MDirection fwd;
 
   // ////////////////////////////////////////////////////////////
   // Constructor
 
-  public POV(Coord coord, MDirection fwd) {
-    this.coord = coord;
+  public POV(P p, MDirection fwd) {
+    this.p = p;
     this.fwd = fwd;
   }
 
@@ -26,28 +29,28 @@ public class POV {
 
   @Override
   public String toString() {
-    return "POV(" + coord.x() + ", " + coord.y() + ", " + fwd;
+    return "POV(" + p.x() + ", " + p.y() + ", " + fwd;
   }
 
   // ////////////////////////////////////////////////////////////
   // Accessors
 
-  public Coord getCoord() {
-    return coord;
+  public P getP() {
+    return p;
   }
 
   public MDirection getFwd() {
     return fwd;
   }
 
-  public Iterable<MSquare> getView(Grid grid, int maxY, int maxX) {
+  public Iterable<MSquare> getView(MGrid grid, int maxY, int maxX) {
     if (maxY < 1) {
       throw new IllegalArgumentException();
     }
     if (maxX < 1) {
       throw new IllegalArgumentException();
     }
-    
+
     List<MSquare> squares = new ArrayList<MSquare>();
     for (int yOff = maxY; yOff >= 1; yOff--) {
       for (int xOff = -maxX; xOff < maxX; xOff++) {
@@ -57,7 +60,6 @@ public class POV {
     }
     return Collections.unmodifiableList(squares);
   }
-
 
   // ////////////////////////////////////////////////////////////
   // Transformations
@@ -92,7 +94,7 @@ public class POV {
       }
     }
 
-    Coord newC = move(x, y);
+    P newC = move(x, y);
     return new POV(newC, fwd);
   }
 
@@ -112,49 +114,49 @@ public class POV {
     // TODO share logic with View
     int index = (fwd.ordinal() + offset) % 4;
     MDirection newFwd = MDirection.values()[index];
-    return new POV(coord, newFwd);
+    return new POV(p, newFwd);
   }
 
   // ////////////////////////////////////////////////////////////
   // Utility methods
 
-  public MSquare getSquare(Grid grid, int xOff, int yOff) {
-    Coord toC = move(xOff, yOff);
+  public MSquare getSquare(MGrid grid, int xOff, int yOff) {
+    P toC = move(xOff, yOff);
     return grid.getSquare(toC.x(), toC.y());
   }
 
-  private Coord move(int xOff, int yOff) {
+  private P move(int xOff, int yOff) {
     MDirection fwd = getFwd();
-    Coord pC = getCoord();
+    P pC = getP();
     int px = pC.x();
     int py = pC.y();
 
-    Coord toC;
+    P toC;
 
     // TODO Move switch to MDirection
     switch (fwd) {
       case NORTH: {
         int x = px + xOff;
         int y = py + yOff;
-        toC = new Coord(x, y);
+        toC = new P(x, y);
         break;
       }
       case EAST: {
         int x = px + yOff;
         int y = py - xOff;
-        toC = new Coord(x, y);
+        toC = new P(x, y);
         break;
       }
       case SOUTH: {
         int x = px - xOff;
         int y = py - yOff;
-        toC = new Coord(x, y);
+        toC = new P(x, y);
         break;
       }
       case WEST: {
         int x = px - yOff;
         int y = py + xOff;
-        toC = new Coord(x, y);
+        toC = new P(x, y);
         break;
       }
       default: {

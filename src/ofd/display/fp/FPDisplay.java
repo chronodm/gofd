@@ -1,4 +1,4 @@
-package ofd.display;
+package ofd.display.fp;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,9 +24,15 @@ import javax.swing.event.ChangeListener;
 
 import ofd.map.*;
 import ofd.util.Disposable;
+import ofd.util.P;
 import ofd.view.*;
+import ofd.display.fp.FPTileRenderer;
+import ofd.display.DisplayModel;
 
-public class Display extends JPanel implements Disposable {
+/**
+ * A first-person display.
+ */
+public class FPDisplay extends JPanel implements Disposable {
 
   // ////////////////////////////////////////////////////////////
   // Constants
@@ -44,7 +50,7 @@ public class Display extends JPanel implements Disposable {
   // ////////////////////////////////////////////////////////////
   // Constructor
 
-  public Display(DisplayModel model) {
+  public FPDisplay(DisplayModel model) {
     this.model = model;
     setBackground(BACKGROUND);
     listener = new ChangeListener() {
@@ -75,8 +81,8 @@ public class Display extends JPanel implements Disposable {
 
     POV pov = model.getPov();
     MDirection fwd = pov.getFwd();
-    Coord coord = pov.getCoord();
-    String pos = coord.toString();
+    P p = pov.getP();
+    String pos = p.toString();
     String dir = fwd.toString();
     
     int posW = fm.stringWidth(pos);
@@ -92,20 +98,20 @@ public class Display extends JPanel implements Disposable {
     
     Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
     
-//    TileRenderer renderer = new TileRenderer(TileType.WALL, VDirection.FWD);
+//    FPTileRenderer renderer = new FPTileRenderer(TileType.WALL, VDirection.FWD);
 //    renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
     
-    Grid grid = model.getGrid();
+    MGrid grid = model.getGrid();
     for (MSquare mSq: pov.getView(grid, 5, 5)) {
       VSquare vSq = View.see(mSq, pov.getFwd());
       for (VDirection vDir: VDirection.values()) {
         TileType tileType = vSq.getTile(vDir).type();
-        TileRenderer renderer = new TileRenderer(tileType, vDir);
-        Coord c = grid.getCoord(mSq);
+        FPTileRenderer renderer = new FPTileRenderer(tileType, vDir);
+        P c = grid.getP(mSq);
         
         // TODO: Transform for orientation
-        int dx = c.x() - coord.x();
-        int dy = c.y() - coord.y();
+        int dx = c.x() - p.x();
+        int dy = c.y() - p.y();
         renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
       }
     }
@@ -138,11 +144,11 @@ public class Display extends JPanel implements Disposable {
       Border etchedBorder = BorderFactory.createEtchedBorder(Color.CYAN, Color.MAGENTA);
       CompoundBorder border = BorderFactory.createCompoundBorder(BorderFactory.createCompoundBorder(emptyBorder, etchedBorder), emptyBorder);
       
-      Grid grid = new TestGrid();
-      POV pov = new POV(new Coord(0, 0), MDirection.NORTH);
+      MGrid grid = new TestGrid();
+      POV pov = new POV(new P(0, 0), MDirection.NORTH);
       final DisplayModel model = new DisplayModel(grid, pov);
       
-      Display disp = new Display(model);
+      FPDisplay disp = new FPDisplay(model);
       disp.setBorder(border);
 
       cp.add(disp, BorderLayout.CENTER);

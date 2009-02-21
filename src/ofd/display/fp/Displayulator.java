@@ -1,15 +1,15 @@
-package ofd.display;
+package ofd.display.fp;
 
 /**
  * Utility class for display calculations
  * @author davidm
  */
-public class Displayulator {
+class Displayulator {
 
   // ////////////////////////////////////////////////////////////
   // Constants
 
-  private static final double CAMERA_TO_FLLOR = -0.5;
+  private static final double CAMERA_TO_FLOOR = -0.5;
 
   private static final double CAMERA_TO_CEILING = 0.5;
 
@@ -52,11 +52,11 @@ public class Displayulator {
     return (w / 2) + (w * ratio);
   }
   
-  public double screenZPlus(double y) {
+  public double screenUp(double y) {
     return screenX(CAMERA_TO_CEILING, y);
   }
   
-  public double screenZMinus(double y) {
-    return screenX(CAMERA_TO_FLLOR, y);
+  public double screenDown(double y) {
+    return screenX(CAMERA_TO_FLOOR, y);
   }
 }

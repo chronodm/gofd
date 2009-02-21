@@ -1,23 +1,26 @@
 package ofd.map;
 
-import java.util.*;
-
-import static ofd.map.TileType.*;
 import static ofd.map.MDirection.*;
+import static ofd.map.TileType.*;
+import ofd.util.P;
+import ofd.util.Range;
 
-public class TestGrid extends Grid {
+import java.util.HashMap;
+import java.util.Map;
+
+public class TestGrid extends MGrid {
 
   // ////////////////////////////////////////////////////////////
   // Constants
 
   private static final int HEIGHT = 10;
   private static final int WIDTH = 11;
-  
+
   // ////////////////////////////////////////////////////////////
   // Fields
 
   private MSquareImpl[][] squares = new MSquareImpl[WIDTH][HEIGHT];
-  
+
   // ////////////////////////////////////////////////////////////
   // Initializer
 
@@ -26,13 +29,13 @@ public class TestGrid extends Grid {
       for (int y = 0; y < HEIGHT; y++) {
         MSquareImpl sq = new MSquareImpl();
         squares[x][y] = sq;
-        
+
         if (x == 0) {
           sq.set(WEST, WALL);
         } else if (x == 10) {
           sq.set(EAST, WALL);
         }
-        
+
         if (y == 0) {
           sq.set(SOUTH, WALL);
         } else if (y == 9) {
@@ -40,7 +43,7 @@ public class TestGrid extends Grid {
         }
       }
     }
-    
+
     for (int x = 1; x < 10; x++) {
       squares[x][0].set(NORTH, WALL);
       squares[x][1].set(SOUTH, WALL);
@@ -73,7 +76,7 @@ public class TestGrid extends Grid {
     }
     squares[5][4].set(NORTH, DOOR);
     squares[5][5].set(SOUTH, DOOR);
-    
+
     for (int y = 2; y < 8; y++) {
       squares[0][y].set(EAST, WALL);
       squares[1][y].set(WEST, WALL);
@@ -90,34 +93,34 @@ public class TestGrid extends Grid {
     squares[2][7].set(WEST, DOOR);
     squares[8][2].set(EAST, DOOR);
     squares[9][2].set(WEST, DOOR);
-    
+
     squares[2][4].set(EAST, WALL);
     squares[3][4].set(WEST, WALL);
     squares[7][5].set(EAST, WALL);
     squares[8][5].set(WEST, WALL);
   }
-  
+
   // ////////////////////////////////////////////////////////////
-  // Grid
-  
+  // MGrid
+
   @Override
-  public MSquare getSquare(Coord coord) {
-    return squares[coord.x()][coord.y()];
+  public MSquare get(P p) {
+    return squares[p.x()][p.y()];
   }
 
   @Override
-  public int height() {
-    return HEIGHT;
+  public Range yRange() {
+    return new Range(0, HEIGHT);
   }
 
   @Override
-  public int width() {
-    return WIDTH;
+  public Range xRange() {
+     return new Range(0, WIDTH);
   }
 
   // ////////////////////////////////////////////////////////////
   // Helper classes
-  
+
   private static class TileImpl implements Tile {
 
     private final TileType type;
@@ -131,24 +134,26 @@ public class TestGrid extends Grid {
       return type;
     }
   }
-  
+
   private static class MSquareImpl implements MSquare {
 
-    private Map<MDirection, Tile> tiles = new HashMap<MDirection, Tile>() {{
-      for (MDirection dir: MDirection.values()) {
-        put(dir, new TileImpl(NONE));
+    private Map<MDirection, Tile> tiles = new HashMap<MDirection, Tile>() {
+      {
+        for (MDirection dir : MDirection.values()) {
+          put(dir, new TileImpl(NONE));
+        }
       }
-    }};
-    
+    };
+
     public void set(MDirection dir, TileType type) {
       tiles.put(dir, new TileImpl(type));
     }
-    
+
     @Override
     public Tile getTile(MDirection direction) {
       return tiles.get(direction);
     }
-    
+
   }
-  
+
 }

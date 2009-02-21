@@ -1,10 +1,10 @@
-package ofd.map;
+package ofd.util;
 
-public class Coord {
+public class P {
   private final int x;
   private final int y;
 
-  public Coord(int x, int y) {
+  public P(int x, int y) {
     this.x = x;
     this.y = y;
   }
@@ -37,7 +37,7 @@ public class Coord {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    Coord other = (Coord) obj;
+    P other = (P) obj;
     if (x != other.x) {
       return false;
     }
@@ -49,6 +49,6 @@ public class Coord {
 
   @Override
   public String toString() {
-    return "Coord(" + x + ", " + y + ")";
+    return "P(" + x + ", " + y + ")";
   }
 }

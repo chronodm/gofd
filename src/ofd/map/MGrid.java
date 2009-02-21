@@ -1,31 +1,19 @@
 package ofd.map;
 
-import java.util.*;
+import ofd.util.IGrid;
+import ofd.util.P;
 
-public abstract class Grid {
+/**
+ * A fixed map {@link IGrid} representing a rectangular map with 0, 0 in the
+ * southwest corner and (width, height) in the northeast.
+ * 
+ * @author davidm
+ */
+public abstract class MGrid implements IGrid<MSquare> {
 
   /*
-   TODO __REDESIGN__: 01) rename Coord to P
-
-   TODO __REDESIGN__: 02) add: interface Range implements Iterable<Integer> {
-     int from();
-     int to();
-     int size();
-   }
-
-   TODO __REDESIGN__: 03) interface IGrid<S> { // plus AbstractGrid<S>
-     Range xRange();
-     Range yRange();
-     S get(P p);
-   }
    
-   TODO __REDESIGN__: 04) rename Grid to MGrid (implements IGrid<MSquare>)
-   
-   TODO __REDESIGN__: 05) add VGrid interface (extends IGrid<VSquare>)
-                         (note: uses relative coordinates rather than absolute;
-                         size is always odd, ranges are -fov to +fov)
-   
-   TODO __REDESIGN__: 06) adapt MapDisplay to show POV w/ location, direction, FOV
+   TODO __REDESIGN__: 06) adapt TopDownDisplay to show POV w/ location, direction, FOV
    
    TODO __REDESIGN__: 07) generalize to VGrid (may include generalizing MSquare/VSquare)
 
@@ -63,13 +51,13 @@ public abstract class Grid {
                                   int ym = unrotated.y();
                                   switch (fwd) {
                                     case NORTH:
-                                      return new Coord(xm, ym);
+                                      return new P(xm, ym);
                                     case SOUTH:
-                                      return new Coord(-xm, -ym);
+                                      return new P(-xm, -ym);
                                     case EAST:
-                                      return new Coord(ym, -xm);
+                                      return new P(ym, -xm);
                                     case WEST:
-                                      return new Coord(-ym, xm);
+                                      return new P(-ym, xm);
                                     default:
                                       throw new IllegalArgumentException("Bad direction " + fwd); 
                                   }
@@ -80,22 +68,13 @@ public abstract class Grid {
    */
 
   // ////////////////////////////////////////////////////////////
-  // Abstracts
-
-  public abstract MSquare getSquare(Coord coord);
-
-  public abstract int width();
-
-  public abstract int height();
-
-  // ////////////////////////////////////////////////////////////
   // Utility methods
 
-  public Coord getCoord(MSquare square) {
-    for (int x = 0; x < width(); x++) {
-      for (int y = 0; y < height(); y++) {
-        Coord c = new Coord(x, y);
-        MSquare sq = getSquare(c);
+  public P getP(MSquare square) {
+    for (int x : xRange()) {
+      for (int y : yRange()) {
+        P c = new P(x, y);
+        MSquare sq = get(c);
         if (sq.equals(square)) {
           return c;
         }
@@ -103,12 +82,12 @@ public abstract class Grid {
     }
     throw new IllegalArgumentException();
   }
-  
+
   /**
    * Handles toroidal wrapping
    */
   public MSquare getSquare(int x, int y) {
-    int w = width();
+    int w = xRange().size();
     if (x < 0) {
       x = (x % w) + w;
     }
@@ -116,7 +95,7 @@ public abstract class Grid {
       x = x % w;
     }
 
-    int h = height();
+    int h = yRange().size();
     if (y < 0) {
       y = (y % h) + h;
     }
@@ -124,7 +103,7 @@ public abstract class Grid {
       y = y % h;
     }
 
-    Coord mapCoord = new Coord(x, y);
-    return getSquare(mapCoord);
+    P mapP = new P(x, y);
+    return get(mapP);
   }
 }

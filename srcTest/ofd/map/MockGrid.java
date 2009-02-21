@@ -1,17 +1,19 @@
 /**
- * 
+ *
  */
 package ofd.map;
 
+import ofd.util.P;
+import ofd.util.Range;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class MockGrid extends Grid {
+public class MockGrid extends MGrid {
 
   private final MSquare[][] gsq;
   private final int gridW;
   private final int gridH;
-  
+
   public MockGrid(int gridW, int gridH) {
     this.gridW = gridW;
     this.gridH = gridH;
@@ -28,19 +30,19 @@ public class MockGrid extends Grid {
   public MSquare[][] getGsq() {
     return gsq;
   }
-  
+
   @Override
-  public MSquare getSquare(Coord coord) {
-    return gsq[coord.x()][coord.y()];
+  public MSquare get(P p) {
+    return gsq[p.x()][p.y()];
   }
 
   @Override
-  public int height() {
-    return gridH;
+  public Range yRange() {
+    return new Range(0, gridH);
   }
 
   @Override
-  public int width() {
-    return gridW;
+  public Range xRange() {
+    return new Range(0, gridW);
   }
-  }
+}

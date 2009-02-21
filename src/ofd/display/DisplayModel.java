@@ -4,7 +4,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 
-import ofd.map.Grid;
+import ofd.map.MGrid;
 import ofd.map.POV;
 import ofd.util.Disposable;
 
@@ -14,13 +14,13 @@ public class DisplayModel implements Disposable {
   // Mutable fields
 
   private EventListenerList listeners = new EventListenerList();
-  private Grid grid;
+  private MGrid grid;
   private POV pov;
   
   // ////////////////////////////////////////////////////////////
   // Constructor
 
-  public DisplayModel(Grid grid, POV pov) {
+  public DisplayModel(MGrid grid, POV pov) {
     if (grid == null) {
       throw new NullPointerException("grid cannot be null");
     }
@@ -34,7 +34,7 @@ public class DisplayModel implements Disposable {
   // ////////////////////////////////////////////////////////////
   // Accessors
   
-  public void setGrid(Grid grid) {
+  public void setGrid(MGrid grid) {
     if (grid == null) {
       throw new NullPointerException();
     }
@@ -50,7 +50,7 @@ public class DisplayModel implements Disposable {
     fireModelChanged();
   }
   
-  public Grid getGrid() {
+  public MGrid getGrid() {
     return grid;
   }
 
