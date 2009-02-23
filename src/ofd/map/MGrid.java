@@ -12,7 +12,9 @@ import ofd.util.P;
 public abstract class MGrid implements IGrid<MSquare> {
 
   /*
-   
+
+   TODO __REDESIGN__: 05) use AbstractBorder.getInteriorRectangle()
+
    TODO __REDESIGN__: 06) adapt TopDownDisplay to show POV w/ location, direction, FOV
    
    TODO __REDESIGN__: 07) generalize to VGrid (may include generalizing MSquare/VSquare)
