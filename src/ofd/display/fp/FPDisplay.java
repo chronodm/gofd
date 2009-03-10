@@ -88,6 +88,7 @@ public class FPDisplay extends JPanel implements Disposable {
     int posW = fm.stringWidth(pos);
     int dirW = fm.stringWidth(dir);
     
+    // TODO use AbstractBorder.getInteriorRectangle()?
     float hCen = getWidth() / 2f;
     float vCen = getHeight() / 2f;
     

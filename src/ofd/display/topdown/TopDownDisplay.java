@@ -53,6 +53,7 @@ public class TopDownDisplay extends JPanel {
     Graphics2D g2 = (Graphics2D) g.create();
     g2.setColor(FOREGROUND);
 
+    // TODO use AbstractBorder.getInteriorRectangle()
     final Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1);
     final int mapWidth = grid.xRange().size();
     final int mapHeight = grid.yRange().size();
@@ -131,6 +132,8 @@ public class TopDownDisplay extends JPanel {
       POV pov = new POV(new P(0, 0), MDirection.NORTH);
       final DisplayModel model = new DisplayModel(grid, pov);
       TopDownDisplay display = new TopDownDisplay(model);
+      
+      display.setBorder(border);
 
       cp.add(display, BorderLayout.CENTER);
 
