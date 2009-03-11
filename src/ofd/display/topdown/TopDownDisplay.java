@@ -1,20 +1,36 @@
 package ofd.display.topdown;
 
-import ofd.map.*;
-import ofd.view.VDirection;
-import ofd.display.TileRenderer;
-import ofd.display.NullRenderer;
-import ofd.display.DisplayModel;
-import ofd.util.P;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
 import java.util.EnumMap;
 import java.util.Map;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+
+import ofd.display.DisplayModel;
+import ofd.display.NullRenderer;
+import ofd.display.TileRenderer;
+import ofd.map.MDirection;
+import ofd.map.MGrid;
+import ofd.map.MSquare;
+import ofd.map.POV;
+import ofd.map.TestGrid;
+import ofd.map.TileType;
+import ofd.util.P;
+import ofd.view.VDirection;
 
 /**
  * A top-down display.
@@ -66,7 +82,8 @@ public class TopDownDisplay extends JPanel {
 
     for (int x : grid.xRange()) {
       for (int y : grid.yRange()) {
-        MSquare sq = grid.getSquare(x, y);
+        P p = new P(x, y);
+        MSquare sq = grid.getSquare(p);
         for (MDirection d : MDirection.values()) {
           TileType t = sq.getTile(d).type();
           VDirection v = d.v();

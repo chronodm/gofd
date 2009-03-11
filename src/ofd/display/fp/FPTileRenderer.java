@@ -1,10 +1,11 @@
 package ofd.display.fp;
 
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics2D;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 
-import ofd.map.*;
-import ofd.view.*;
+import ofd.map.TileType;
+import ofd.view.VDirection;
 
 public class FPTileRenderer {
 

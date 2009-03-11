@@ -3,10 +3,10 @@
  */
 package ofd.map;
 
-import ofd.util.P;
-import ofd.util.Range;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import ofd.util.P;
+import ofd.util.Range;
 
 public class MockGrid extends MGrid {
 

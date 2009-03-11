@@ -1,8 +1,9 @@
 package ofd.display;
 
-import ofd.view.VDirection;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
-import java.awt.*;
+import ofd.view.VDirection;
 
 /**
  * @author david

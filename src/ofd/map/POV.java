@@ -1,12 +1,13 @@
 package ofd.map;
 
-import ofd.util.P;
-import ofd.view.Rotation;
-import ofd.view.VDirection;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import ofd.util.P;
+import ofd.util.V;
+import ofd.view.Rotation;
+import ofd.view.VDirection;
 
 public class POV {
 
@@ -14,14 +15,14 @@ public class POV {
   // Final fields
 
   private final P p;
-  private final MDirection fwd;
+  private final MDirection facing;
 
   // ////////////////////////////////////////////////////////////
   // Constructor
 
-  public POV(P p, MDirection fwd) {
+  public POV(P p, MDirection facing) {
     this.p = p;
-    this.fwd = fwd;
+    this.facing = facing;
   }
 
   // ////////////////////////////////////////////////////////////
@@ -29,7 +30,7 @@ public class POV {
 
   @Override
   public String toString() {
-    return "POV(" + p.x() + ", " + p.y() + ", " + fwd;
+    return "POV(" + p.x() + ", " + p.y() + ", " + facing;
   }
 
   // ////////////////////////////////////////////////////////////
@@ -39,8 +40,8 @@ public class POV {
     return p;
   }
 
-  public MDirection getFwd() {
-    return fwd;
+  public MDirection getFacing() {
+    return facing;
   }
 
   public Iterable<MSquare> getView(MGrid grid, int maxY, int maxX) {
@@ -55,7 +56,8 @@ public class POV {
     for (int yOff = maxY; yOff >= 1; yOff--) {
       for (int xOff = -maxX; xOff < maxX; xOff++) {
         // TODO: Narrow as we get closer
-        squares.add(getSquare(grid, xOff, yOff));
+        V move = new V(xOff, yOff);
+        squares.add(getSquare(grid, move));
       }
     }
     return Collections.unmodifiableList(squares);
@@ -64,105 +66,20 @@ public class POV {
   // ////////////////////////////////////////////////////////////
   // Transformations
 
-  public POV move(VDirection dir) {
-    int x, y;
-
-    // TODO Move switch to VDirection
-    switch (dir) {
-      case FWD: {
-        x = 0;
-        y = 1;
-        break;
-      }
-      case BACK: {
-        x = 0;
-        y = -1;
-        break;
-      }
-      case LEFT: {
-        x = -1;
-        y = 0;
-        break;
-      }
-      case RIGHT: {
-        x = 1;
-        y = 0;
-        break;
-      }
-      default: {
-        throw new IllegalArgumentException("Unknown direction " + dir);
-      }
-    }
-
-    P newC = move(x, y);
-    return new POV(newC, fwd);
+  public POV moveOne(VDirection dir) {
+    return new POV(getFacing().translate(getP(), dir.moveOne()), facing);
   }
 
-  public POV turn(Rotation dir) {
-    int offset;
-    // TODO move switch to Rotation
-    switch (dir) {
-      case CLOCKWISE:
-        offset = 1;
-        break;
-      case COUNTERCLOCKWISE:
-        offset = 3; // -1 hack
-        break;
-      default:
-        throw new IllegalArgumentException("Unknown direction " + dir);
-    }
-    // TODO share logic with View
-    int index = (fwd.ordinal() + offset) % 4;
-    MDirection newFwd = MDirection.values()[index];
-    return new POV(p, newFwd);
+  public POV turnOne(Rotation dir) {
+    return new POV(p, dir.turnOne(facing));
   }
 
   // ////////////////////////////////////////////////////////////
   // Utility methods
 
-  public MSquare getSquare(MGrid grid, int xOff, int yOff) {
-    P toC = move(xOff, yOff);
-    return grid.getSquare(toC.x(), toC.y());
+  public MSquare getSquare(MGrid grid, V move) {
+    P toC = getFacing().translate(getP(), move);
+    return grid.getSquare(toC);
   }
 
-  private P move(int xOff, int yOff) {
-    MDirection fwd = getFwd();
-    P pC = getP();
-    int px = pC.x();
-    int py = pC.y();
-
-    P toC;
-
-    // TODO Move switch to MDirection
-    switch (fwd) {
-      case NORTH: {
-        int x = px + xOff;
-        int y = py + yOff;
-        toC = new P(x, y);
-        break;
-      }
-      case EAST: {
-        int x = px + yOff;
-        int y = py - xOff;
-        toC = new P(x, y);
-        break;
-      }
-      case SOUTH: {
-        int x = px - xOff;
-        int y = py - yOff;
-        toC = new P(x, y);
-        break;
-      }
-      case WEST: {
-        int x = px - yOff;
-        int y = py + xOff;
-        toC = new P(x, y);
-        break;
-      }
-      default: {
-        throw new IllegalArgumentException("Unknown direction " + fwd);
-      }
-    }
-    return toC;
-  }
 }

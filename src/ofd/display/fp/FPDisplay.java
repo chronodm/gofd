@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.font.LineMetrics;
-import java.awt.geom.*;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -22,12 +22,19 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ofd.map.*;
+import ofd.display.DisplayModel;
+import ofd.map.MDirection;
+import ofd.map.MGrid;
+import ofd.map.MSquare;
+import ofd.map.POV;
+import ofd.map.TestGrid;
+import ofd.map.TileType;
 import ofd.util.Disposable;
 import ofd.util.P;
-import ofd.view.*;
-import ofd.display.fp.FPTileRenderer;
-import ofd.display.DisplayModel;
+import ofd.view.Rotation;
+import ofd.view.VDirection;
+import ofd.view.VSquare;
+import ofd.view.View;
 
 /**
  * A first-person display.
@@ -71,7 +78,6 @@ public class FPDisplay extends JPanel implements Disposable {
     
     Graphics2D g2 = (Graphics2D) g.create();
     g2.setColor(FOREGROUND);
-//    g2.setBackground(BACKGROUND);
     g2.setFont(FONT);
 
     FontMetrics fm = g2.getFontMetrics();
@@ -80,7 +86,7 @@ public class FPDisplay extends JPanel implements Disposable {
     float line = 1.2f * em;
 
     POV pov = model.getPov();
-    MDirection fwd = pov.getFwd();
+    MDirection fwd = pov.getFacing();
     P p = pov.getP();
     String pos = p.toString();
     String dir = fwd.toString();
@@ -99,12 +105,9 @@ public class FPDisplay extends JPanel implements Disposable {
     
     Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
     
-//    FPTileRenderer renderer = new FPTileRenderer(TileType.WALL, VDirection.FWD);
-//    renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
-    
     MGrid grid = model.getGrid();
     for (MSquare mSq: pov.getView(grid, 5, 5)) {
-      VSquare vSq = View.see(mSq, pov.getFwd());
+      VSquare vSq = View.see(mSq, pov.getFacing());
       for (VDirection vDir: VDirection.values()) {
         TileType tileType = vSq.getTile(vDir).type();
         FPTileRenderer renderer = new FPTileRenderer(tileType, vDir);
@@ -166,17 +169,17 @@ public class FPDisplay extends JPanel implements Disposable {
           System.out.println(KeyEvent.getKeyText(keyCode));
           POV pov = model.getPov();
           if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
-            model.setPOV(pov.move(VDirection.FWD));
+            model.setPOV(pov.moveOne(VDirection.FWD));
           } else if (keyCode == KeyEvent.VK_S|| keyCode == KeyEvent.VK_DOWN) {
-            model.setPOV(pov.move(VDirection.BACK));
+            model.setPOV(pov.moveOne(VDirection.BACK));
           } else if (keyCode == KeyEvent.VK_A) {
-            model.setPOV(pov.move(VDirection.LEFT));
+            model.setPOV(pov.moveOne(VDirection.LEFT));
           } else if (keyCode == KeyEvent.VK_D) {
-            model.setPOV(pov.move(VDirection.RIGHT));
+            model.setPOV(pov.moveOne(VDirection.RIGHT));
           } else if (keyCode == KeyEvent.VK_RIGHT) {
-            model.setPOV(pov.turn(Rotation.CLOCKWISE));
+            model.setPOV(pov.turnOne(Rotation.CLOCKWISE));
           } else if (keyCode == KeyEvent.VK_LEFT) {
-            model.setPOV(pov.turn(Rotation.COUNTERCLOCKWISE));
+            model.setPOV(pov.turnOne(Rotation.COUNTERCLOCKWISE));
           }
         }
       });

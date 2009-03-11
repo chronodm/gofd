@@ -1,10 +1,11 @@
 package ofd.display.topdown;
 
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+
 import ofd.display.AbstractShapeRenderer;
 import ofd.view.VDirection;
-
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 /**
  * @author david

@@ -16,8 +16,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gofd.iml" afterPath="$PROJECT_DIR$/gofd.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/display/topdown/TopDownDisplay.java" afterPath="$PROJECT_DIR$/src/ofd/display/topdown/TopDownDisplay.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/view/VDirection.java" afterPath="$PROJECT_DIR$/src/ofd/view/VDirection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/map/MDirection.java" afterPath="$PROJECT_DIR$/src/ofd/map/MDirection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/view/Rotation.java" afterPath="$PROJECT_DIR$/src/ofd/view/Rotation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/view/View.java" afterPath="$PROJECT_DIR$/src/ofd/view/View.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/view/VGrid.java" afterPath="$PROJECT_DIR$/src/ofd/view/VGrid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/view/VSquare.java" afterPath="$PROJECT_DIR$/src/ofd/view/VSquare.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ofd/util/V.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/map/MSquare.java" afterPath="$PROJECT_DIR$/src/ofd/map/MSquare.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gofd.iws" afterPath="$PROJECT_DIR$/gofd.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/map/POV.java" afterPath="$PROJECT_DIR$/src/ofd/map/POV.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/srcTest/ofd/map/POVTest.java" afterPath="$PROJECT_DIR$/srcTest/ofd/map/POVTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ofd/util/AbstractGrid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/map/MGrid.java" afterPath="$PROJECT_DIR$/src/ofd/map/MGrid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/display/fp/FPDisplay.java" afterPath="$PROJECT_DIR$/src/ofd/display/fp/FPDisplay.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ofd/util/P.java" afterPath="$PROJECT_DIR$/src/ofd/util/P.java" />
+      <change type="MODIFICATION" beforePath="C:\Documents and Settings\davidm\workspace\gofd\src\ofd\ToDo.java" afterPath="C:\Documents and Settings\davidm\workspace\gofd\src\ofd\ToDo.java" />
     </list>
     <ignored path="gofd.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,55 +94,43 @@
     <favorites_list name="gofd" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.7457241">
+    <splitter split-orientation="vertical" split-proportion="0.37309644">
       <split-first>
         <leaf>
-          <file leaf-file-name="ViewTest.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/srcTest/ofd/view/ViewTest.java">
+          <file leaf-file-name="TopDownDisplay.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ofd/display/topdown/TopDownDisplay.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="17" selection-start="385" selection-end="385" vertical-scroll-proportion="0.37469587">
+                <state line="79" column="0" selection-start="2374" selection-end="2374" vertical-scroll-proportion="2.1649485">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MGrid.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="FPDisplay.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ofd/display/fp/FPDisplay.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="96" column="4" selection-start="2619" selection-end="2619" vertical-scroll-proportion="0.46391752">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MGrid.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/ofd/map/MGrid.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.479798">
+                <state line="10" column="39" selection-start="242" selection-end="242" vertical-scroll-proportion="1.0526316">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="View.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ofd/view/View.java">
+          <file leaf-file-name="TestGrid.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ofd/map/TestGrid.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="29" selection-start="487" selection-end="487" vertical-scroll-proportion="0.09245742">
+                <state line="14" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.21052632">
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="POV.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ofd/map/POV.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="31" column="10" selection-start="627" selection-end="627" vertical-scroll-proportion="0.05352798">
-                  <folding>
-                    <marker date="1235373821089" expanded="false" signature="3415:3568" placeholder="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="POVTest.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/srcTest/ofd/map/POVTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="54" column="50" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.05352798">
-                  <folding>
-                    <marker date="1235373825480" expanded="false" signature="25:107" placeholder="..." />
-                    <marker date="1235373825480" expanded="true" signature="11277:11337" placeholder="{...}" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -136,10 +139,37 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="ViewTest.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/srcTest/ofd/view/ViewTest.java">
+          <file leaf-file-name="AbstractGrid.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ofd/util/AbstractGrid.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="0" selection-start="263" selection-end="263" vertical-scroll-proportion="0.18181819">
+                <state line="7" column="69" selection-start="133" selection-end="133" vertical-scroll-proportion="0.41286862">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="IGrid.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ofd/util/IGrid.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="5" column="0" selection-start="44" selection-end="44" vertical-scroll-proportion="0.29490617">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="VGrid.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ofd/view/VGrid.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="15" column="3" selection-start="625" selection-end="625" vertical-scroll-proportion="0.6997319">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ToDo.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ofd/ToDo.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="4" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.14804469">
                   <folding />
                 </state>
               </provider>
@@ -253,10 +283,144 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd\util" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd\display" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd\display" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd\display\topdown" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd\display" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:C:\Documents and Settings\davidm\workspace\gofd\src\ofd\display\fp" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
     </subPane>
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="2" />
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="0.16666667" version="1" splitterProportion="0.5">
@@ -282,13 +446,45 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ofd.util" />
       <recent name="ofd.map" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="ofd.map.POV" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in gofd">
+    <tempConfiguration default="false" name="All in gofd" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <module name="gofd" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </tempConfiguration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -318,12 +514,33 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
@@ -347,32 +564,9 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <list size="0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JUnit.All in gofd" />
+    </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -426,30 +620,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="198" y="120" width="987" height="726" extended-state="0" />
-    <editor active="true" />
+    <frame x="-4" y="-4" width="1288" height="1002" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" order="8" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295325" order="1" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="3" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="7" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24971494" order="7" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2746781" order="0" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3649635" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295325" order="2" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="5" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
@@ -516,42 +710,119 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ofd/util/P.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="34" selection-start="53" selection-end="53" vertical-scroll-proportion="0.08">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/util/V.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="26" selection-start="45" selection-end="45" vertical-scroll-proportion="0.08">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/view/Rotation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="2" selection-start="95" selection-end="95" vertical-scroll-proportion="0.24">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/srcTest/ofd/map/POVTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="52" selection-start="804" selection-end="804" vertical-scroll-proportion="0.30550918">
+          <folding>
+            <marker date="1236772852303" expanded="false" signature="25:107" placeholder="..." />
+            <marker date="1236772852303" expanded="true" signature="15124:15187" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ofd/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="29" selection-start="487" selection-end="487" vertical-scroll-proportion="0.09245742">
+        <state line="15" column="36" selection-start="319" selection-end="319" vertical-scroll-proportion="0.45818183">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ofd/map/POV.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="10" selection-start="627" selection-end="627" vertical-scroll-proportion="0.05352798">
+        <state line="63" column="0" selection-start="1423" selection-end="1423" vertical-scroll-proportion="-0.017123288">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/map/MDirection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="0" selection-start="1874" selection-end="1874" vertical-scroll-proportion="1.5342466">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/display/topdown/TopDownDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="0" selection-start="2374" selection-end="2374" vertical-scroll-proportion="2.1649485">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/display/fp/FPDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="4" selection-start="2619" selection-end="2619" vertical-scroll-proportion="0.46391752">
           <folding>
-            <marker date="1235373821089" expanded="false" signature="3415:3568" placeholder="{...}" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/srcTest/ofd/map/POVTest.java">
+    <entry file="file://$PROJECT_DIR$/src/ofd/map/TestGrid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="50" selection-start="1584" selection-end="1584" vertical-scroll-proportion="0.05352798">
-          <folding>
-            <marker date="1235373825480" expanded="false" signature="25:107" placeholder="..." />
-            <marker date="1235373825480" expanded="true" signature="11277:11337" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/srcTest/ofd/view/ViewTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="17" selection-start="385" selection-end="385" vertical-scroll-proportion="0.37469587">
+        <state line="14" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.21052632">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ofd/map/MGrid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.479798">
+        <state line="10" column="39" selection-start="242" selection-end="242" vertical-scroll-proportion="1.0526316">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/util/AbstractGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="69" selection-start="133" selection-end="133" vertical-scroll-proportion="0.41286862">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/util/IGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="44" selection-end="44" vertical-scroll-proportion="0.29490617">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/view/VGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="3" selection-start="625" selection-end="625" vertical-scroll-proportion="0.6997319">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/display/fp/Displayulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="53" selection-start="251" selection-end="251" vertical-scroll-proportion="-1.7320261">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ofd/ToDo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.14804469">
           <folding />
         </state>
       </provider>

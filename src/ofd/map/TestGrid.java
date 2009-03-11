@@ -1,12 +1,18 @@
 package ofd.map;
 
-import static ofd.map.MDirection.*;
-import static ofd.map.TileType.*;
-import ofd.util.P;
-import ofd.util.Range;
+import static ofd.map.MDirection.EAST;
+import static ofd.map.MDirection.NORTH;
+import static ofd.map.MDirection.SOUTH;
+import static ofd.map.MDirection.WEST;
+import static ofd.map.TileType.DOOR;
+import static ofd.map.TileType.NONE;
+import static ofd.map.TileType.WALL;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import ofd.util.P;
+import ofd.util.Range;
 
 public class TestGrid extends MGrid {
 

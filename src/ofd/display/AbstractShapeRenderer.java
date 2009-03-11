@@ -1,8 +1,12 @@
 package ofd.display;
 
-import ofd.view.VDirection;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.Stroke;
 
-import java.awt.*;
+import ofd.view.VDirection;
 
 /**
  * @author david

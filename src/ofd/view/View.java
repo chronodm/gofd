@@ -1,8 +1,8 @@
 package ofd.view;
 
-import java.util.*;
-
-import ofd.map.*;
+import ofd.map.MDirection;
+import ofd.map.MSquare;
+import ofd.map.Tile;
 
 public class View {
 
@@ -18,18 +18,17 @@ public class View {
 
   private static class SquareWrapper implements VSquare {
 
-    private final int offset;
     private final MSquare ms;
+    private final MDirection facing;
 
     public SquareWrapper(MSquare ms, MDirection facing) {
       this.ms = ms;
-      offset = facing.ordinal();
+      this.facing = facing;
     }
 
     @Override
     public Tile getTile(VDirection dir) {
-      // TODO share logic with POV
-      int index = (dir.ordinal() + offset) % 4;
+      int index = (dir.ordinal() + facing.ordinal()) % 4;
       MDirection mdir = MDirection.values()[index];
       return ms.getTile(mdir);
     }

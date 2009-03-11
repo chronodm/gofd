@@ -1,29 +1,29 @@
 package ofd.util;
 
-/** A point in map or view space. */
-public class P {
-  private final int x;
-  private final int y;
+/** A translation vector. */
+public class V {
+  private final int dx;
+  private final int dy;
 
-  public P(int x, int y) {
-    this.x = x;
-    this.y = y;
+  public V(int dx, int dy) {
+    this.dx = dx;
+    this.dy = dy;
   }
 
-  public int x() {
-    return x;
+  public int dx() {
+    return dx;
   }
 
-  public int y() {
-    return y;
+  public int dy() {
+    return dy;
   }
 
   @Override
   public int hashCode() {
-    final int prime = 31;
+    final int prime = 17;
     int result = 1;
-    result = prime * result + x;
-    result = prime * result + y;
+    result = prime * result + dx;
+    result = prime * result + dy;
     return result;
   }
 
@@ -38,11 +38,11 @@ public class P {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    P other = (P) obj;
-    if (x != other.x) {
+    V other = (V) obj;
+    if (dx != other.dx) {
       return false;
     }
-    if (y != other.y) {
+    if (dy != other.dy) {
       return false;
     }
     return true;
@@ -50,7 +50,7 @@ public class P {
 
   @Override
   public String toString() {
-    return "P(" + x + ", " + y + ")";
+    return "V(" + dx + ", " + dy + ")";
   }
 
 }

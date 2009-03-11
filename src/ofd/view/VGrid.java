@@ -1,6 +1,6 @@
 package ofd.view;
 
-import ofd.util.IGrid;
+import ofd.util.AbstractGrid;
 
 /**
  * A variable map with 0, 0 in the center, representing the {@link ofd.map.POV} location, with
@@ -14,5 +14,5 @@ import ofd.util.IGrid;
  * moves, the {@link VGrid} changes.
  * @author david
  */
-public interface VGrid extends IGrid<VSquare> {
+public abstract class VGrid extends AbstractGrid<VDirection, VSquare> {
 }

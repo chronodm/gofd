@@ -3,7 +3,7 @@ package ofd;
 public class ToDo {
   /*
 
-  TODO __REDESIGN__: generalize MGrid to VGrid (may include generalizing MSquare/VSquare)
+  TODO __REDESIGN__: finish FPTileRenderer
 
   TODO __REDESIGN__: add POV.see(MGrid) (returns VGrid) layering:
                         VGrid -> Rotation -> Translation/Cliption -> MGrid
@@ -61,7 +61,7 @@ public class ToDo {
 
   TODO __EDITOR__: Add screen point -> model translation to TopDownDisplay: square, nearest wall (w/distance)
   
-  TODO __EDITOR__: Add layer to TopDownDisplay:
+  TODO __EDITOR__: Add mouse layer to TopDownDisplay:
                    - Mouse listener
                    - Mouseover & clicks for squares and walls
                    - Context menu for squares and walls
