@@ -1,12 +1,6 @@
 package ofd.display.fp;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.font.LineMetrics;
@@ -93,18 +87,17 @@ public class FPDisplay extends JPanel implements Disposable {
     
     int posW = fm.stringWidth(pos);
     int dirW = fm.stringWidth(dir);
-    
-    // TODO use AbstractBorder.getInteriorRectangle()?
-    float hCen = getWidth() / 2f;
-    float vCen = getHeight() / 2f;
+
+    Rectangle2D viewRect = getViewRect();
+    float hCen = (float) viewRect.getCenterX();
+    float vCen = (float) viewRect.getCenterY();
     
     g2.drawString(pos, hCen - (posW / 2f), vCen - line / 2f);
     g2.drawString(dir, hCen - (dirW / 2f), vCen + line / 2f);
     
     System.out.println(pov);
     
-    Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
-    
+
     MGrid grid = model.getGrid();
     for (MSquare mSq: pov.getView(grid, 5, 5)) {
       VSquare vSq = View.see(mSq, pov.getFacing());
@@ -116,17 +109,31 @@ public class FPDisplay extends JPanel implements Disposable {
         // TODO: Transform for orientation
         int dx = c.x() - p.x();
         int dy = c.y() - p.y();
-        renderer.render(g2, viewRect, dx, dy, 3 * Math.PI / 4);
+        renderer.render(g2, viewRect, dx, dy, getFOV());
       }
     }
 
     g2.drawString(pos, hCen - (posW / 2f), vCen - line / 2f);
     g2.drawString(dir, hCen - (dirW / 2f), vCen + line / 2f);
   }
-  
+
   @Override
   public void dispose() {
     model.removeChangeListener(listener);
+  }
+
+  // ////////////////////////////////////////////////////////////
+  // Private
+
+  private Rectangle2D getViewRect() {
+    // TODO figure out what's wrong with this
+    Insets insets = getInsets();
+    return new Rectangle2D.Double(insets.left, insets.top, getWidth() - insets.right - insets.left, getHeight() - insets.top - insets.bottom);
+  }
+
+  private double getFOV() {
+    Rectangle2D viewRect = getViewRect();
+    return Math.asin(viewRect.getWidth() / (2 * viewRect.getHeight()));
   }
 
   // ////////////////////////////////////////////////////////////

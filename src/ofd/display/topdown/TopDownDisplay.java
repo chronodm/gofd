@@ -1,12 +1,6 @@
 package ofd.display.topdown;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
 import java.util.EnumMap;
@@ -69,8 +63,7 @@ public class TopDownDisplay extends JPanel {
     Graphics2D g2 = (Graphics2D) g.create();
     g2.setColor(FOREGROUND);
 
-    // TODO use AbstractBorder.getInteriorRectangle()
-    final Rectangle2D viewRect = new Rectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1);
+    final Rectangle2D viewRect = getViewRect();
     final int mapWidth = grid.xRange().size();
     final int mapHeight = grid.yRange().size();
 
@@ -97,11 +90,19 @@ public class TopDownDisplay extends JPanel {
   // ////////////////////////////////////////////////////////////
   // Private methods  
 
+  private Rectangle2D getViewRect() {
+    Insets insets = getInsets();
+    return new Rectangle2D.Double(insets.left, insets.top, getWidth() - insets.right - insets.left, getHeight() - insets.top - insets.bottom);
+  }
+
   private MGrid getGrid() {
     return model.getGrid();
   }
 
   private void paintCoords(Graphics2D g2, Rectangle2D viewRect, int x, int y, MSquare sq) {
+    
+    // TODO take into account viewRect origin offset
+    
     g2.setFont(FONT);
 
     MGrid grid = getGrid();

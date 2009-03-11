@@ -69,6 +69,8 @@ public class FPTileRenderer {
   //
   
   public void render(Graphics2D g, Rectangle2D viewRect, int dx, int dy, double fovAngle) {
+    // TODO take into account viewRect origin offset
+
     if (type == TileType.NONE) {
       return;
     }
