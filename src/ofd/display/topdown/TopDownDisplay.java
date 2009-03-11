@@ -134,6 +134,7 @@ public class TopDownDisplay extends JPanel {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
       JFrame f = new JFrame();
+      f.setTitle(TopDownDisplay.class.getSimpleName());
       f.setBackground(Color.BLUE);
       f.setSize(770, 700);
       f.setLocationByPlatform(true);

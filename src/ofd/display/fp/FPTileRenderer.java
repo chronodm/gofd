@@ -1,6 +1,8 @@
 package ofd.display.fp;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 
@@ -8,6 +10,11 @@ import ofd.map.TileType;
 import ofd.view.VDirection;
 
 public class FPTileRenderer {
+
+  // ////////////////////////////////////////////////////////////
+  // Constants
+  
+  private static final Stroke STROKE = new BasicStroke(3);
 
   // ////////////////////////////////////////////////////////////
   // Fields
@@ -67,6 +74,7 @@ public class FPTileRenderer {
     }
 
     Graphics2D g2 = (Graphics2D) g.create();
+    g2.setStroke(STROKE);
     
     double fovWidthPx = viewRect.getWidth();
 
@@ -104,36 +112,24 @@ public class FPTileRenderer {
       rect = new Rectangle2D.Double(x0 + 1, z0 + 1, width - 2, height - 2);
       g2.setColor(g2.getBackground());
       g2.fill(rect);
-    } else if (side == VDirection.RIGHT || side == VDirection.LEFT) {
-      //// Left
-      // x2y2px, z2y2px
-      // x2y2px, z1y2px
-      
-      //// Right
-      // x2y1px, z2y1px
-      // x2y1px, z1y2px
-
+    } else if (side == VDirection.RIGHT) {
       GeneralPath path = new GeneralPath();
       path.moveTo(cenX + x2y2px, cenY + z2y2px);
       path.lineTo(cenX + x2y1px, cenY + z2y1px);
       path.lineTo(cenX + x2y1px, cenY + z1y1px);
       path.lineTo(cenX + x2y2px, cenY + z1y2px);
       path.lineTo(cenX + x2y2px, cenY + z2y2px);
-      
-//      System.out.println((cenX + x2y2px) + ", " + (cenY + z2y2px));
-//      System.out.println((cenX + x2y1px) + ", " + (cenY + z2y1px));
-//      System.out.println((cenX + x2y1px) + ", " + (cenY + z1y1px));
-//      System.out.println((cenX + x2y2px) + ", " + (cenY + z1y2px));
-      
       g2.draw(path);
-
-      
-      path = new GeneralPath();
-      path.moveTo(cenX + x2y2px + 1, cenY + z2y2px + 1);
-      path.lineTo(cenX + x2y1px - 1, cenY + z2y1px + 1);
-      path.lineTo(cenX + x2y1px - 1, cenY + z1y1px - 1);
-      path.lineTo(cenX + x2y2px + 1, cenY + z1y2px - 1);
-      path.lineTo(cenX + x2y2px + 1, cenY + z2y2px + 1);
+      g2.setColor(g2.getBackground());
+      g2.fill(path);
+    } else if (side == VDirection.LEFT) {
+      GeneralPath path = new GeneralPath();
+      path.moveTo(cenX + x1y2px, cenY + z2y2px);
+      path.lineTo(cenX + x1y1px, cenY + z2y1px);
+      path.lineTo(cenX + x1y1px, cenY + z1y1px);
+      path.lineTo(cenX + x1y2px, cenY + z1y2px);
+      path.lineTo(cenX + x1y2px, cenY + z2y2px);
+      g2.draw(path);
       g2.setColor(g2.getBackground());
       g2.fill(path);
     }

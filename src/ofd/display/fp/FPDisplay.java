@@ -137,8 +137,9 @@ public class FPDisplay extends JPanel implements Disposable {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
       JFrame f = new JFrame();
+      f.setTitle(FPDisplay.class.getSimpleName());
       f.setBackground(Color.BLUE);
-      f.setSize(800, 600);
+      f.setSize(800, 450);
       f.setLocationByPlatform(true);
       f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       Container cp = f.getContentPane();
