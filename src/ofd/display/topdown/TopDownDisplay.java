@@ -67,6 +67,7 @@ public class TopDownDisplay extends JPanel {
     final int mapWidth = grid.xRange().size();
     final int mapHeight = grid.yRange().size();
 
+    // TODO introduce RendererFactory
     Map<TileType, TileRenderer> renderers = new EnumMap<TileType, TileRenderer>(TileType.class) {{
       put(TileType.WALL, new TopDownWallRenderer(FOREGROUND, BACKGROUND, viewRect, mapWidth, mapHeight));
       put(TileType.DOOR, new TopDownDoorRenderer(FOREGROUND, BACKGROUND, viewRect, mapWidth, mapHeight));

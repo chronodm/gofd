@@ -35,6 +35,7 @@ class FPWallRenderer extends AbstractShapeRenderer {
     double x1 = d.screenX(rightX(x), y0);
     double z0 = d.screenUp(y0);
     double z1 = d.screenDown(y0);
+    System.out.println("shapeFwd(" + x + ", " + y + ") -> " + "Rectangle(" + x0 + ", " + z0 + ", " + (x1-x0) + ", " + (z1-z0));
     return new Rectangle2D.Double(x0, z0, x1-x0, z1-z0);
   }
 
@@ -56,6 +57,8 @@ class FPWallRenderer extends AbstractShapeRenderer {
     path.lineTo(x1, down1);
     path.lineTo(x0, down0);
     path.lineTo(x0, up0);
+
+    System.out.println("shapeSide(" + x + ", " + y + ") -> " + "(" + x0 + ", " + up0 + "), "+ "(" + x1 + ", " + up1 + "), "+ "(" + x1 + ", " + down1 + "), "+ "(" + x0 + ", " + down0 + "), ");
 
     return path;
   }

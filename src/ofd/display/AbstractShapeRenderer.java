@@ -23,7 +23,7 @@ public abstract class AbstractShapeRenderer extends AbstractRenderer {
 
   public AbstractShapeRenderer(Color fg, Color bg) {
     super(fg, bg);
-    stroke = new BasicStroke(2);
+    stroke = new BasicStroke(3);
   }
 
   // ////////////////////////////////////////////////////////////
