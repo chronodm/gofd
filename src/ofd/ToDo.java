@@ -3,12 +3,18 @@ package ofd;
 public class ToDo {
   /*
 
+  TODO __REDESIGN__: Move AbstractGrid.getSquare() to MGrid
+  
+  TODO __TEST__:     test getSquare() with maps with weird ranges
+  
+  TODO __TEST__:     run a coverage tool
+
   TODO __REDESIGN__: create FPDoorRenderer
 
   TODO __REDESIGN__: add POV.see(MGrid) (returns VGrid) layering:
                         VGrid -> Rotation -> Translation/Cliption -> MGrid
                         
-                        Translation/Cliption:
+               DONE:    Translation/Cliption:
                           Given:
                             - an MGrid,
                             - a (non-rotated) POV origin,

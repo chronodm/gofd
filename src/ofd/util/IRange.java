@@ -21,4 +21,9 @@ public interface IRange extends Iterable<Integer> {
      * @return {@link #to()} - {@link #from()}
      */
     int size();
+    
+    /**
+     * @return true if the range contains <code>i</code>, false otherwise
+     */
+    boolean contains(int i);
 }

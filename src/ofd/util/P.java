@@ -17,6 +17,10 @@ public class P {
   public int y() {
     return y;
   }
+  
+  public P translate(V v) {
+    return new P(x + v.dx(), y + v.dy());
+  }
 
   @Override
   public int hashCode() {

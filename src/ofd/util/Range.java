@@ -41,5 +41,10 @@ public class Range implements IRange {
     @Override public Iterator<Integer> iterator() {
         return new RangeIterator(this);
     }
+    
+    @Override
+    public boolean contains(int i) {
+      return i >= from && i < to;
+    }
 
 }
