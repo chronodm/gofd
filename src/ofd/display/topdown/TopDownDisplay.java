@@ -1,87 +1,72 @@
 package ofd.display.topdown;
 
+import ofd.display.AbstractDisplayPanel;
+import static ofd.display.DisplayConstants.*;
+import ofd.display.DisplayModel;
+import ofd.display.RendererFactory;
+import ofd.map.*;
+import ofd.util.P;
+import ofd.view.VDirection;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
-import java.util.EnumMap;
-import java.util.Map;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-
-import ofd.display.DisplayModel;
-import ofd.display.NullRenderer;
-import ofd.display.TileRenderer;
-import ofd.map.MDirection;
-import ofd.map.MGrid;
-import ofd.map.MSquare;
-import ofd.map.POV;
-import ofd.map.TestGrid;
-import ofd.map.TileType;
-import ofd.util.P;
-import ofd.view.VDirection;
 
 /**
  * A top-down display.
  */
-public class TopDownDisplay extends JPanel {
-
-  // ////////////////////////////////////////////////////////////
-  // Constants
-
-  private static final Color BACKGROUND = Color.BLACK;
-  private static final Color FOREGROUND = Color.WHITE;
-  private static final Font FONT = new Font("Lucida Sans Typewriter", Font.PLAIN, 9);
-
-  // ////////////////////////////////////////////////////////////
-  // Instance variables
-
-  private final DisplayModel model;
+public class TopDownDisplay extends AbstractDisplayPanel {
 
   // ////////////////////////////////////////////////////////////
   // Constructor
 
   public TopDownDisplay(DisplayModel model) {
-    this.model = model;
-    setBackground(BACKGROUND);
+    super(model);
   }
 
   // ////////////////////////////////////////////////////////////
   // Overrides
 
   @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-
+  protected void paintDisplay(Graphics2D g2) {
     MGrid grid = getGrid();
 
-    Graphics2D g2 = (Graphics2D) g.create();
+    final Rectangle2D viewRect = getViewRect();
+
+    g2.setClip(new Rectangle2D.Double(viewRect.getX() - 1, viewRect.getY() - 1, viewRect.getWidth() + 2, viewRect.getHeight() + 2));
+    g2.translate(viewRect.getX(), viewRect.getY());
     g2.setColor(FOREGROUND);
 
-    final Rectangle2D viewRect = getViewRect();
+    POV pov = model.getPov();
+
     final int mapWidth = grid.xRange().size();
     final int mapHeight = grid.yRange().size();
 
-    // TODO introduce RendererFactory
-    Map<TileType, TileRenderer> renderers = new EnumMap<TileType, TileRenderer>(TileType.class) {{
-      put(TileType.WALL, new TopDownWallRenderer(FOREGROUND, BACKGROUND, viewRect, mapWidth, mapHeight));
-      put(TileType.DOOR, new TopDownDoorRenderer(FOREGROUND, BACKGROUND, viewRect, mapWidth, mapHeight));
-      put(TileType.NONE, new NullRenderer());
-    }};
+    RendererFactory renderers = RendererFactory.builder()
+            .add(TileType.WALL, new TopDownWallRenderer(FOREGROUND, viewRect, mapWidth, mapHeight))
+            .add(TileType.DOOR, new TopDownDoorRenderer(FOREGROUND, BACKGROUND, viewRect, mapWidth, mapHeight))
+            .create();
+
+    TopDownEyeRenderer eye = new TopDownEyeRenderer(FOREGROUND, BACKGROUND, viewRect, mapWidth, mapHeight);
 
     for (int x : grid.xRange()) {
       for (int y : grid.yRange()) {
         P p = new P(x, y);
+
+        if (p.equals(pov.getP())) {
+          MDirection facing = pov.getFacing();
+          VDirection v = facing.v();
+          eye.paint(g2, x, y, v);
+        }
+
         MSquare sq = grid.getSquare(p);
         for (MDirection d : MDirection.values()) {
           TileType t = sq.getTile(d).type();
           VDirection v = d.v();
-          renderers.get(t).paint(g2, x, y, v);
+          renderers.getRenderer(t).paint(g2, x, y, v);
         }
         paintCoords(g2, viewRect, x, y, sq);
       }
@@ -89,7 +74,7 @@ public class TopDownDisplay extends JPanel {
   }
 
   // ////////////////////////////////////////////////////////////
-  // Private methods  
+  // Private methods
 
   private Rectangle2D getViewRect() {
     Insets insets = getInsets();
@@ -101,9 +86,6 @@ public class TopDownDisplay extends JPanel {
   }
 
   private void paintCoords(Graphics2D g2, Rectangle2D viewRect, int x, int y, MSquare sq) {
-    
-    // TODO take into account viewRect origin offset
-    
     g2.setFont(FONT);
 
     MGrid grid = getGrid();
@@ -120,12 +102,6 @@ public class TopDownDisplay extends JPanel {
     double y0 = -th + ((mapHeight - y) * ySqPx);
     String pos = x + ", " + y;
     g2.drawString(pos, (float) x0 + line, (float) (y0 - line));
-
-//    System.out.println(pos);
-//    for (MDirection dir : MDirection.values()) {
-//      TileType t = sq.getTile(dir).type();
-//      System.out.println("\t" + dir + "\t" + t);
-//    }
   }
 
   // ////////////////////////////////////////////////////////////
@@ -152,7 +128,7 @@ public class TopDownDisplay extends JPanel {
       POV pov = new POV(new P(0, 0), MDirection.NORTH);
       final DisplayModel model = new DisplayModel(grid, pov);
       TopDownDisplay display = new TopDownDisplay(model);
-      
+
       display.setBorder(border);
 
       cp.add(display, BorderLayout.CENTER);

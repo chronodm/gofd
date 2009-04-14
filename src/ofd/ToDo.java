@@ -3,10 +3,6 @@ package ofd;
 public class ToDo {
   /*
 
-  TODO __REDESIGN__: Move AbstractGrid.getSquare() to MGrid
-  
-  TODO __TEST__:     test getSquare() with maps with weird ranges
-  
   TODO __TEST__:     run a coverage tool
 
   TODO __REDESIGN__: create FPDoorRenderer

@@ -1,10 +1,9 @@
 package ofd.display.topdown;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
-
 import ofd.display.AbstractRenderer;
+
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author david
@@ -22,7 +21,7 @@ class TopDownDoorRenderer extends AbstractRenderer {
 
   public TopDownDoorRenderer(Color fg, Color bg, Rectangle2D viewRect, int mapWidth, int mapHeight) {
     super(fg, bg);
-    wallRenderer = new TopDownWallRenderer(fg, bg, viewRect, mapWidth, mapHeight);
+    wallRenderer = new TopDownWallRenderer(fg, viewRect, mapWidth, mapHeight);
     double doorXLength = wallRenderer.getXLength() / 3;
     double doorYLength = wallRenderer.getYLength() / 3;
     double doorThickness = wallRenderer.getThickness() * 3;

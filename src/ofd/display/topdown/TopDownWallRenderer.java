@@ -1,11 +1,10 @@
 package ofd.display.topdown;
 
-import java.awt.Color;
-import java.awt.Shape;
-import java.awt.geom.Rectangle2D;
-
 import ofd.display.AbstractShapeRenderer;
 import ofd.view.VDirection;
+
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author david
@@ -15,7 +14,7 @@ class TopDownWallRenderer extends AbstractShapeRenderer {
   // ////////////////////////////////////////////////////////////
   // Constants
 
-  static final double DEFAULT_THICKNESS = 3;
+  static final double DEFAULT_THICKNESS = 2;
 
   // ////////////////////////////////////////////////////////////
   // Fields
@@ -30,15 +29,19 @@ class TopDownWallRenderer extends AbstractShapeRenderer {
   // ////////////////////////////////////////////////////////////
   // Constructors
 
+  public TopDownWallRenderer(Color fg, Rectangle2D viewRect, int mapWidth, int mapHeight) {
+    this(fg, fg, viewRect, mapWidth, mapHeight);
+  }
+
   public TopDownWallRenderer(Color fg, Color bg, Rectangle2D viewRect, int mapWidth, int mapHeight) {
     this(fg, bg, mapHeight, viewRect.getWidth() / mapWidth, viewRect.getHeight() / mapHeight, DEFAULT_THICKNESS);
   }
 
-  public TopDownWallRenderer(Color fg, Color bg, int mapHeight, double xSqPx, double ySqPx, double thickness){
+  public TopDownWallRenderer(Color fg, Color bg, int mapHeight, double xSqPx, double ySqPx, double thickness) {
     this(fg, bg, mapHeight, xSqPx, ySqPx, xSqPx, ySqPx, thickness);
   }
 
-  public TopDownWallRenderer(Color fg, Color bg, int mapHeight, double xSqPx, double ySqPx, double xLength, double yLength, double thickness){
+  public TopDownWallRenderer(Color fg, Color bg, int mapHeight, double xSqPx, double ySqPx, double xLength, double yLength, double thickness) {
     super(fg, bg);
     this.mapHeight = mapHeight;
     this.xSqPx = xSqPx;
@@ -74,17 +77,20 @@ class TopDownWallRenderer extends AbstractShapeRenderer {
   // ////////////////////////////////////////////////////////////
   // AbstractShapeRenderer
 
-  @Override protected Shape shapeFwd(int x, int y) {
+  @Override
+  protected Shape shapeFwd(int x, int y) {
     double xOff = (xSqPx - xLength) / 2;
     return new Rectangle2D.Double(x0(x) + xOff, y1(y), xLength, thickness);
   }
 
-  @Override protected Shape shapeBack(int x, int y) {
+  @Override
+  protected Shape shapeBack(int x, int y) {
     double xOff = (xSqPx - xLength) / 2;
     return new Rectangle2D.Double(x0(x) + xOff, y0(y), xLength, thickness);
   }
 
-  @Override protected Shape shapeSide(int x, int y, VDirection side) {
+  @Override
+  protected Shape shapeSide(int x, int y, VDirection side) {
     double yOff = (ySqPx - yLength) / 2;
     switch (side) {
       case LEFT:
